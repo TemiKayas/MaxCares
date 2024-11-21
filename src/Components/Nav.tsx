@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
+import {Typography} from "@mui/material";
+
+
 
 const MyDiv = styled.div`
     display: flex;
@@ -25,11 +28,11 @@ const StyledLink = styled(Link)`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffab25;
+    background-color: silver;
     color: black;
     text-decoration: none;
     font-family: Arial, sans-serif;
-    box-shadow: 8px 5px #ec8a00;
+    box-shadow: 8px 5px navy;
     transition: transform 0.5s, box-shadow 0.5s;
     border: 2px solid black;
 
@@ -63,7 +66,10 @@ const LinksContainer = styled.div`
 export default function Nav() {
     return (
         <MyDiv>
-            <img src="/MaxCares.png" alt="MaxCares" style={{ height: '100px', marginRight: '20px' }} />
+            <img src="/src/assets/MaxCares.png" alt="MaxCares" style={{ height: '100px', marginRight: '20px' }} />
+            <h1>
+                Metro West Pet Care
+            </h1>
             <LinksContainer>
                 <StyledLink to="/">Home</StyledLink>
                 <StyledLink to="/about">About</StyledLink>

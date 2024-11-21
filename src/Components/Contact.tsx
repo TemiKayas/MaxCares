@@ -6,7 +6,8 @@ export default function Contact() {
         <div>
             <h1>Contact</h1>
             <p>This is the contact page</p>
-            <Link to="/">Back to Home</Link>
+            <img src="/src/assets/happydog.png" alt="Happy dog" style={{ height: '100px', marginRight: '20px' }} />
+
         </div>
     );
 }

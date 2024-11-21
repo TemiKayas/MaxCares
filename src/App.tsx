@@ -4,7 +4,10 @@ import Home from './Components/Home';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import './App.css';
+import './index.css';
 import Services from "./Components/Services.tsx";
+import Footer from "./Components/Footer.tsx";
+
 
 function App() {
     return (
@@ -16,6 +19,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/services" element={<Services />} />
             </Routes>
+            <Footer />
         </Router>
     );
 }
