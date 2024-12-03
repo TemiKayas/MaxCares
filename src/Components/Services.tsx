@@ -96,7 +96,7 @@ const services = [
         description: 'Going away for a prolonged period of time? We offer extended visits to keep your pets company and well cared for! This service includes 2 walks and 3 check-ins throughout the day.'
     },
     {
-        title: 'Frequent Visits',
+        title: 'Frequent Visits / Other Care',
         image: '/src/assets/goat.jpeg',
         price: 'Contact me! Let\'s work out a plan that works for you and your pet!',
         description: 'Looking for frequent support? We can work out a plan that works for you and your pet! Contact me to figure out a plan that ensures your pet is well cared for. We offer support for puppies, older dogs, big dogs, small dogs, cats, and more!'

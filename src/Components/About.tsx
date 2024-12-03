@@ -57,12 +57,12 @@ export default function About() {
         <AboutContainer elevation={3}>
             <HeaderContainer elevation={3}>
                 <StyledImage src="/src/assets/maxwithdog.png" alt="Max with a dog" />
-                <Title variant="h2">
-                    Max Cares Pet Care
+                <Title sx={{fontFamily:"Lilita One"}} variant="h2">
+                    Metro West Pet Care
                 </Title>
             </HeaderContainer>
             <BodyText>
-                Welcome to <b>Max Cares Pet Care</b>, your trusted dog walking and pet care service near <b>Framingham,
+                Welcome to <b>Metro West Pet Care</b>, your trusted dog walking and pet care service near <b>Framingham,
                 Ashland, and Sudbury, Massachusetts</b>.
                 Run by <b>Max Davidson</b>, a dedicated dog walker with decades of experience in pet care and veterinary
                 assistance, we provide
