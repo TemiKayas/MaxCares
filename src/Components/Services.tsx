@@ -152,25 +152,25 @@ const StyledCardContent = styled.div`
 const services = [
     {
         title: 'Dog Walking',
-        image: '/src/assets/dogwalking.png',
+        image: '/dogwalking.png',
         price: '$20 for 10 minutes, $25 for 20 minutes, $30 for 30 minutes',
         description: 'Busy schedule or just can\'t keep up with your dog anymore? We offer dog walking services to keep your pet active and healthy. Each additional dog per walk is $10 extra.'
     },
     {
         title: 'House Visits',
-        image: '/src/assets/dogandcat.png',
+        image: '/dogandcat.png',
         price: '$25 for 1 visit, $40 for 2 visits per day',
         description: 'Too busy to stop at home? We offer house visits to check on your pets and make sure they are happy and healthy. Perfect service for those who are away for long hours, or those with a puppy or older dog.'
     },
     {
         title: 'Extended Visits',
-        image: '/src/assets/curlyhairdog.png',
+        image: '/curlyhairdog.png',
         price: '$150 per day',
         description: 'Going away for a prolonged period of time? We offer extended visits to keep your pets company and well cared for! This service includes 2 walks and 3 check-ins throughout the day.'
     },
     {
         title: 'Frequent Visits / Other Care',
-        image: '/src/assets/goat.jpeg',
+        image: '/goat.jpeg',
         price: 'Contact me! Let\'s work out a plan that works for you and your pet!',
         description: 'Looking for frequent support? We can work out a plan that works for you and your pet! Contact me to figure out a plan that ensures your pet is well cared for. We offer support for puppies, older dogs, big dogs, small dogs, cats, and more!'
     },

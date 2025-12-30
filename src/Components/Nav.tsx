@@ -120,12 +120,12 @@ const LinksContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    flex-wrap: wrap;
     gap: 0.5rem;
 
     @media (max-width: 768px) {
         justify-content: center;
         width: 100%;
+        flex-wrap: wrap;
     }
 `;
 
@@ -144,7 +144,7 @@ export default function Nav() {
     return (
         <MyDiv>
             <BrandContainer>
-                <Logo src="/src/assets/MaxCares.png" alt="MaxCares" />
+                <Logo src="/MaxCares.png" alt="MaxCares" />
                 <Title>Metro West Pet Care</Title>
             </BrandContainer>
             <LinksContainer>

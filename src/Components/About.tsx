@@ -144,7 +144,7 @@ export default function About() {
     return (
         <AboutContainer elevation={3}>
             <HeaderContainer elevation={3}>
-                <StyledImage src="/src/assets/maxwithdog.png" alt="Max with a dog" />
+                <StyledImage src="/maxwithdog.png" alt="Max with a dog" />
                 <Title sx={{fontFamily:"Lilita One"}} variant="h2">
                     Metro West Pet Care
                 </Title>

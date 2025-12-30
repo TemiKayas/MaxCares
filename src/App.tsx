@@ -6,7 +6,6 @@ import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Footer from './Components/Footer';
 import { Box } from '@mui/material';
-import backgroundImage from '/src/assets/background.png';
 import './App.css';
 import './index.css';
 
@@ -19,7 +18,7 @@ function App() {
                     flexDirection: 'column',
                     minHeight: '100vh',
                     height: '100%',
-                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundImage: 'url(/background.png)',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     backgroundAttachment: 'fixed',

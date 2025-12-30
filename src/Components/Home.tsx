@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Container, Typography, Box, TextField, Button, createTheme, ThemeProvider } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import styled from 'styled-components';
-import backgroundImage from "/src/assets/background.png";
 
 const lightGrayTheme = createTheme({
     palette: {
@@ -139,7 +138,7 @@ export default function Home() {
                         flex: 1,
                         py: { xs: 2, sm: 3, md: 4 },
                         px: { xs: 2, sm: 3, md: 4 },
-                        backgroundImage: `url(${backgroundImage})`,
+                        backgroundImage: 'url(/background.png)',
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
                         backgroundAttachment: 'fixed',
@@ -254,7 +253,7 @@ export default function Home() {
                                     </Box>
                                 </CallToActionContainer>
                             </Bubble>
-                            <Image src='/src/assets/coolhudson.png' alt='Hudson the dog' />
+                            <Image src='/coolhudson.png' alt='Hudson the dog' />
                         </FlexContainer>
                     </Box>
                 </Container>
