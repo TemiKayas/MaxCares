@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Container, Typography, Box, TextField, Button, createTheme, ThemeProvider } from '@mui/material';
+import { Container, Typography, Box, TextField, Button, MenuItem, createTheme, ThemeProvider, Alert, Snackbar } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import styled from 'styled-components';
+import emailjs from 'emailjs-com';
 
 const lightGrayTheme = createTheme({
     palette: {
@@ -109,10 +110,17 @@ const FlexContainer = styled(Box)`
 export default function Home() {
     const [formData, setFormData] = useState({
         name: '',
+        email: '',
         phone: '',
         subject: '',
-        description: ''
+        description: '',
+        service: '',
+        petType: ''
     });
+
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -123,8 +131,42 @@ export default function Home() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log(formData);
+
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            setSnackbarMessage('Email service not configured. Please contact us at petcareMW@gmail.com or call 774-424-7085');
+            setSnackbarSeverity('error');
+            setOpenSnackbar(true);
+            return;
+        }
+
+        emailjs.send(serviceId, templateId, formData, publicKey)
+            .then(() => {
+                setSnackbarMessage('Thank you! Your message has been sent successfully. We will contact you soon!');
+                setSnackbarSeverity('success');
+                setOpenSnackbar(true);
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    subject: '',
+                    description: '',
+                    service: '',
+                    petType: ''
+                });
+            })
+            .catch(() => {
+                setSnackbarMessage('Failed to send message. Please email us directly at petcareMW@gmail.com or call 774-424-7085');
+                setSnackbarSeverity('error');
+                setOpenSnackbar(true);
+            });
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
     };
 
     return (
@@ -182,6 +224,23 @@ export default function Home() {
                                             onChange={handleChange}
                                             required
                                             fullWidth
+                                            variant="outlined"
+                                            InputProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                            InputLabelProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                        />
+                                        <TextField
+                                            label="Email"
+                                            name="email"
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            fullWidth
+                                            variant="outlined"
                                             InputProps={{
                                                 sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
                                             }}
@@ -197,6 +256,7 @@ export default function Home() {
                                             onChange={handleChange}
                                             required
                                             fullWidth
+                                            variant="outlined"
                                             InputProps={{
                                                 sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
                                             }}
@@ -205,12 +265,13 @@ export default function Home() {
                                             }}
                                         />
                                         <TextField
-                                            label="Service Needed"
+                                            label="Subject"
                                             name="subject"
                                             value={formData.subject}
                                             onChange={handleChange}
                                             required
                                             fullWidth
+                                            variant="outlined"
                                             InputProps={{
                                                 sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
                                             }}
@@ -227,6 +288,50 @@ export default function Home() {
                                             rows={4}
                                             required
                                             fullWidth
+                                            variant="outlined"
+                                            InputProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                            InputLabelProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                        />
+                                        <TextField
+                                            select
+                                            label="Service"
+                                            name="service"
+                                            value={formData.service}
+                                            onChange={handleChange}
+                                            required
+                                            fullWidth
+                                            variant="outlined"
+                                            InputProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                            InputLabelProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                            SelectProps={{
+                                                MenuProps: {
+                                                    PaperProps: {
+                                                        sx: { '& .MuiMenuItem-root': { fontSize: { xs: '1rem', lg: '1.3rem' } } }
+                                                    }
+                                                }
+                                            }}
+                                        >
+                                            <MenuItem value="Dog Walking">Dog Walking</MenuItem>
+                                            <MenuItem value="House Visits">House Visits</MenuItem>
+                                            <MenuItem value="Extended Visits">Extended Visits</MenuItem>
+                                            <MenuItem value="Frequent Visits">Frequent Visits / Other Care</MenuItem>
+                                        </TextField>
+                                        <TextField
+                                            label="Type of Pet"
+                                            name="petType"
+                                            value={formData.petType}
+                                            onChange={handleChange}
+                                            required
+                                            fullWidth
+                                            variant="outlined"
                                             InputProps={{
                                                 sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
                                             }}
@@ -258,6 +363,16 @@ export default function Home() {
                     </Box>
                 </Container>
             </Box>
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%', fontSize: '1rem' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </ThemeProvider>
     );
 }

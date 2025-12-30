@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField, Button, MenuItem, Box, Typography, Paper } from '@mui/material';
+import { TextField, Button, MenuItem, Box, Typography, Paper, Alert, Snackbar } from '@mui/material';
 import emailjs from 'emailjs-com';
 import styled from 'styled-components';
 
@@ -75,6 +75,10 @@ export default function Contact() {
         petType: ''
     });
 
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...formData,
@@ -84,12 +88,42 @@ export default function Contact() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData, 'YOUR_USER_ID')
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
+
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            setSnackbarMessage('Email service not configured. Please contact us at petcareMW@gmail.com or call 774-424-7085');
+            setSnackbarSeverity('error');
+            setOpenSnackbar(true);
+            return;
+        }
+
+        emailjs.send(serviceId, templateId, formData, publicKey)
+            .then(() => {
+                setSnackbarMessage('Thank you! Your message has been sent successfully. We will contact you soon!');
+                setSnackbarSeverity('success');
+                setOpenSnackbar(true);
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    subject: '',
+                    description: '',
+                    service: '',
+                    petType: ''
+                });
+            })
+            .catch(() => {
+                setSnackbarMessage('Failed to send message. Please email us directly at petcareMW@gmail.com or call 774-424-7085');
+                setSnackbarSeverity('error');
+                setOpenSnackbar(true);
             });
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
     };
 
     return (
@@ -242,6 +276,16 @@ export default function Contact() {
                     </Button>
                 </Box>
             </StyledPaper>
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%', fontSize: '1rem' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </ContactContainer>
     );
 }
