@@ -7,18 +7,19 @@ const MyDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     background-color: deepskyblue;
-    padding: 1.5rem 3rem;
+    padding: 1rem 2%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 4px solid black;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-height: 120px;
+    border-bottom: 0.25rem solid black;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+    min-height: 5.5rem;
+    box-sizing: border-box;
 
     @media (max-width: 1024px) {
-        padding: 1rem;
-        min-height: 70px;
-        border-bottom: 3px solid black;
+        padding: 0.75rem 1.5%;
+        min-height: 4.5rem;
+        border-bottom: 0.2rem solid black;
     }
 
     @media (max-width: 768px) {
@@ -31,25 +32,26 @@ const MyDiv = styled.div`
 `;
 
 const Logo = styled.img`
-    height: 110px;
+    height: 4.5rem;
     width: auto;
+    max-height: 5rem;
 
     @media (max-width: 1024px) {
-        height: 60px;
+        height: 3.5rem;
     }
 
     @media (max-width: 768px) {
-        height: 50px;
+        height: 3rem;
     }
 `;
 
 const Title = styled.h1`
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     margin: 0;
     white-space: nowrap;
 
     @media (max-width: 1024px) {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     @media (max-width: 768px) {
@@ -63,10 +65,10 @@ const Title = styled.h1`
 `;
 
 const StyledLink = styled(Link)`
-    margin: 0 0.75rem;
-    border-radius: 45px;
-    padding: 1rem 2.5rem;
-    font-size: 1.4rem;
+    margin: 0 0.25rem;
+    border-radius: 2.5rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,44 +77,44 @@ const StyledLink = styled(Link)`
     text-decoration: none;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
-    box-shadow: 6px 6px navy;
+    box-shadow: 0.375rem 0.375rem navy;
     transition: all 0.3s ease;
-    border: 3px solid black;
+    border: 0.1875rem solid black;
     white-space: nowrap;
-    min-width: 140px;
+    min-width: 7rem;
 
     &:hover {
         background-color: #4bacac;
-        transform: translateY(-3px);
-        box-shadow: 8px 8px navy;
+        transform: translateY(-0.1875rem);
+        box-shadow: 0.5rem 0.5rem navy;
     }
 
     &:active {
         transform: translateY(0);
-        box-shadow: 4px 4px navy;
+        box-shadow: 0.25rem 0.25rem navy;
     }
 
     @media (max-width: 1024px) {
         padding: 0.6rem 1.2rem;
         font-size: 1rem;
-        margin: 0 0.3rem;
-        border: 2px solid black;
-        box-shadow: 5px 5px navy;
-        min-width: 100px;
+        margin: 0 0.2rem;
+        border: 0.125rem solid black;
+        box-shadow: 0.3125rem 0.3125rem navy;
+        min-width: 6rem;
     }
 
     @media (max-width: 768px) {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
         margin: 0 0.25rem;
-        box-shadow: 3px 3px navy;
-        min-width: 80px;
+        box-shadow: 0.1875rem 0.1875rem navy;
+        min-width: 5rem;
     }
 
     @media (max-width: 480px) {
         padding: 0.4rem 0.8rem;
         font-size: 0.85rem;
-        min-width: 70px;
+        min-width: 4.5rem;
     }
 `;
 
@@ -120,7 +122,8 @@ const LinksContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
+    flex-shrink: 0;
 
     @media (max-width: 768px) {
         justify-content: center;
@@ -132,7 +135,9 @@ const LinksContainer = styled.div`
 const BrandContainer = styled.div`
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
+    flex-shrink: 1;
+    min-width: 0;
 
     @media (max-width: 768px) {
         flex-direction: column;

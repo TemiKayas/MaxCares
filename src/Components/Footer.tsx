@@ -65,8 +65,8 @@ export default function Footer() {
             <FooterText variant="body1">
                 All rights reserved to Metro West Pet Care © 2025
                 <br />
-                <ContactInfo>email@gmail.com</ContactInfo>
-                <ContactInfo>1-508-816-4444</ContactInfo>
+                <ContactInfo>petcareMW@gmail.com</ContactInfo>
+                <ContactInfo>774-424-7085</ContactInfo>
             </FooterText>
         </FooterContainer>
     );

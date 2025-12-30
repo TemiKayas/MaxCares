@@ -12,6 +12,10 @@ const AboutContainer = styled(Paper)`
     background-color: #e3f2fd !important;
     border-radius: 30px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
 
     @media screen and (max-width: 1024px) {
         width: 92%;
@@ -45,6 +49,8 @@ const HeaderContainer = styled(Paper)`
     border-radius: 25px;
     border: 5px solid #3f51b5;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    box-sizing: border-box;
 
     @media screen and (max-width: 1024px) {
         gap: 1.5rem;
@@ -118,6 +124,8 @@ const BodyText = styled(Typography)`
     font-weight: 400;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    box-sizing: border-box;
+    max-width: 100%;
 
     @media screen and (max-width: 1024px) {
         font-size: 1.2rem;
