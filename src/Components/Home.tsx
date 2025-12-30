@@ -19,18 +19,36 @@ const lightGrayTheme = createTheme({
 });
 
 const Bubble = styled(Box)`
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.95);
     display: flex;
     flex-direction: column;
-    border: 3px solid #000000;
-    border-radius: 85px;
+    border: 4px solid #000000;
+    border-radius: 60px;
     color: #000000;
-    width: 80%;
+    width: 100%;
+    max-width: 950px;
     text-align: center;
-    margin: -4% -5% 0 0;
-    padding: 2%;
+    padding: 4rem;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+
+    @media (max-width: 1024px) {
+        max-width: 550px;
+        padding: 2rem;
+        border-radius: 40px;
+        border: 3px solid #000000;
+    }
+
     @media (max-width: 768px) {
-        width: 80%;
+        width: 90%;
+        max-width: 100%;
+        padding: 1.5rem;
+        border-radius: 30px;
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: 480px) {
+        padding: 1.25rem;
+        border-radius: 25px;
     }
 `;
 
@@ -38,30 +56,53 @@ const CallToActionContainer = styled(Box)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1%;
-    margin-bottom: 20px;
+    gap: 2.5rem;
+    width: 100%;
 `;
 
 const Image = styled.img`
-    height: 80vh;
-    margin: -11% -5% 0 0;
+    height: 85vh;
+    max-height: 900px;
+    width: auto;
+    object-fit: contain;
     filter: brightness(1.1);
-    
+
+    @media (max-width: 1024px) {
+        height: 60vh;
+        max-height: 500px;
+    }
+
     @media (max-width: 768px) {
         height: 50vh;
-        margin: 0;
+        max-height: 400px;
+        width: 100%;
+    }
+
+    @media (max-width: 480px) {
+        height: 40vh;
+        max-height: 300px;
     }
 `;
 
 const FlexContainer = styled(Box)`
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    margin: 0 3%;
+    gap: 5rem;
+    width: 100%;
+    padding: 3rem 2rem;
+
+    @media (max-width: 1024px) {
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
     @media (max-width: 768px) {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
     }
 `;
 
@@ -89,36 +130,127 @@ export default function Home() {
 
     return (
         <ThemeProvider theme={lightGrayTheme}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 160px)' }}>
                 <Container
                     maxWidth="xl"
                     sx={{
                         backgroundColor: 'background.default',
                         color: 'text.primary',
                         flex: 1,
-                        py: 4,
+                        py: { xs: 2, sm: 3, md: 4 },
+                        px: { xs: 2, sm: 3, md: 4 },
                         backgroundImage: `url(${backgroundImage})`,
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
                         backgroundAttachment: 'fixed',
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'space-between',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                     }}
                 >
-                    <Box sx={{ textAlign: 'left', my: 4, mt: 12 }}>
+                    <Box sx={{ width: '100%', maxWidth: '1400px', margin: '0 auto' }}>
                         <FlexContainer>
                             <Bubble>
                                 <CallToActionContainer>
-                                    <Typography sx={{ fontFamily: 'Ubuntu' }} variant="body1" component="p">
+                                    <Typography
+                                        sx={{
+                                            fontFamily: 'Ubuntu',
+                                            fontSize: { xs: '1rem', sm: '1.1rem', md: '1.5rem', lg: '1.6rem' },
+                                            lineHeight: 1.7,
+                                            fontWeight: 500
+                                        }}
+                                        variant="body1"
+                                        component="p"
+                                    >
                                         Please provide information on the service you are looking for and your pet's information in the description.
                                     </Typography>
-                                    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 400, margin: 'auto' }}>
-                                        <TextField label="Name" name="name" value={formData.name} onChange={handleChange} required />
-                                        <TextField label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
-                                        <TextField label="Service Needed" name="subject" value={formData.subject} onChange={handleChange} required />
-                                        <TextField label="Description" name="description" value={formData.description} onChange={handleChange} multiline rows={4} required />
-                                        <Button type="submit" variant="contained" color="primary">Submit</Button>
+                                    <Box
+                                        component="form"
+                                        onSubmit={handleSubmit}
+                                        sx={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: { xs: 2, md: 2.5, lg: 3 },
+                                            width: '100%',
+                                            maxWidth: { xs: 500, lg: 700 }
+                                        }}
+                                    >
+                                        <TextField
+                                            label="Name"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            fullWidth
+                                            InputProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                            InputLabelProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                        />
+                                        <TextField
+                                            label="Phone Number"
+                                            name="phone"
+                                            type="tel"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            required
+                                            fullWidth
+                                            InputProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                            InputLabelProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                        />
+                                        <TextField
+                                            label="Service Needed"
+                                            name="subject"
+                                            value={formData.subject}
+                                            onChange={handleChange}
+                                            required
+                                            fullWidth
+                                            InputProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                            InputLabelProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                        />
+                                        <TextField
+                                            label="Description"
+                                            name="description"
+                                            value={formData.description}
+                                            onChange={handleChange}
+                                            multiline
+                                            rows={4}
+                                            required
+                                            fullWidth
+                                            InputProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                            InputLabelProps={{
+                                                sx: { fontSize: { xs: '1rem', lg: '1.3rem' } }
+                                            }}
+                                        />
+                                        <Button
+                                            type="submit"
+                                            variant="contained"
+                                            color="primary"
+                                            sx={{
+                                                py: { xs: 1.5, lg: 2 },
+                                                fontSize: { xs: '1.1rem', lg: '1.5rem' },
+                                                fontWeight: 'bold',
+                                                '&:hover': {
+                                                    transform: 'translateY(-2px)',
+                                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                                                }
+                                            }}
+                                        >
+                                            Submit
+                                        </Button>
                                     </Box>
                                 </CallToActionContainer>
                             </Bubble>

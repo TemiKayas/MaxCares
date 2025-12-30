@@ -4,75 +4,148 @@ import { Typography } from '@mui/material';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2%;
-    width: 95%;
-    margin: 2% auto;
-    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    width: 90%;
+    max-width: 1600px;
+    margin: 4rem auto;
+    padding: 3rem 0;
+    min-height: calc(100vh - 300px);
 
-    @media screen and (max-width: 768px) {
-        margin: 5% auto;
-        width: 90%;
-        flex-direction: column;
-        gap: 16px; 
-        align-items: center; 
+    @media screen and (max-width: 1200px) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        width: 92%;
+        margin: 3rem auto;
+        padding: 2rem 0;
+    }
+
+    @media screen and (max-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        width: 95%;
+        margin: 2rem auto;
+        padding: 1rem 0;
+    }
+
+    @media screen and (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        width: 95%;
+        margin: 1.5rem auto;
     }
 `;
 
 const StyledCard = styled.div`
-    flex: 1 1 calc(23% - 16px); 
-    max-width: 23%; 
-    border-radius: 16px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     background: #ffffff;
-    transition: transform 0.2s, box-shadow 0.3s;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 2px solid #e0e0e0;
 
     &:hover {
-        transform: scale(1.02);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         cursor: pointer;
     }
 
+    @media screen and (max-width: 1024px) {
+        border-radius: 20px;
+
+        &:hover {
+            transform: translateY(-8px);
+        }
+    }
+
     @media screen and (max-width: 768px) {
-        flex: none;
-        width: 90%; 
-        max-width: 90%;
+        border-radius: 16px;
+
+        &:hover {
+            transform: translateY(-4px);
+        }
     }
 `;
 
-const StyledCardMedia = styled.div`
-    height: 250px;
+const StyledCardMedia = styled.div<{ image: string }>`
+    height: 280px;
     background-image: url(${(props) => props.image});
     background-size: cover;
     background-position: center;
+    flex-shrink: 0;
+
+    @media screen and (max-width: 1024px) {
+        height: 220px;
+    }
+
+    @media screen and (max-width: 768px) {
+        height: 200px;
+    }
 `;
 
 const StyledCardContent = styled.div`
     text-align: center;
-    padding: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 
     & h5 {
-        font-size: 1.5rem;
+        font-size: 2rem;
         color: #333333;
         font-weight: bold;
+        margin: 0;
     }
 
     & p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         color: #555555;
-        
+        line-height: 1.6;
+        margin: 0;
     }
 
     & .price {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         color: #17a2b8;
         font-weight: bold;
-        margin: 8px 0;
-        
+        margin: 0.5rem 0;
+    }
+
+    @media screen and (max-width: 1024px) {
+        padding: 1.25rem;
+        gap: 0.75rem;
+
+        & h5 {
+            font-size: 1.3rem;
+        }
+
+        & p {
+            font-size: 0.95rem;
+        }
+
+        & .price {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 1rem;
+
+        & h5 {
+            font-size: 1.25rem;
+        }
+
+        & p {
+            font-size: 0.9rem;
+        }
+
+        & .price {
+            font-size: 1rem;
+        }
     }
 `;
 
